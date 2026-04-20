@@ -2,7 +2,7 @@
 
 import { Block, Theme } from '@/types'
 import { SocialIcon } from './SocialIcon'
-import { Copy, Check, ExternalLink } from 'lucide-react'
+import { Copy, Check, ExternalLink, FileText, Download } from 'lucide-react'
 import { useState } from 'react'
 
 export function buttonRadius(style: string): { icon: number; card: number } {
@@ -34,6 +34,8 @@ export function BlockRenderer({ block, theme, buttonStyle, onLinkClick }: BlockR
       return <TextBlock block={block} theme={theme} />
     case 'link':
       return <LinkBlock block={block} theme={theme} buttonStyle={buttonStyle} onLinkClick={onLinkClick} />
+    case 'cv':
+      return <CvBlock block={block} theme={theme} buttonStyle={buttonStyle} onLinkClick={onLinkClick} />
     case 'divider':
       return <DividerBlock theme={theme} />
     default:
@@ -145,6 +147,36 @@ function LinkBlock({ block, theme, buttonStyle, onLinkClick }: BlockRendererProp
         )}
       </div>
       <ExternalLink size={16} className={`${theme.subtext} group-hover:opacity-100`} />
+    </a>
+  )
+}
+
+function CvBlock({ block, theme, buttonStyle, onLinkClick }: BlockRendererProps) {
+  const r = buttonRadius(buttonStyle)
+  const url = block.data.cv_url
+  const label = block.data.cv_label || "CV'mi İndir"
+  if (!url) return null
+
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => onLinkClick?.(block.id)}
+      className={`flex items-center gap-3 p-4 ${theme.card} hover:opacity-80 transition-opacity group`}
+      style={{ borderRadius: r.card }}
+    >
+      <div
+        className={`flex items-center justify-center ${theme.button} ${theme.buttonText}`}
+        style={{ width: 44, height: 44, borderRadius: r.icon, flexShrink: 0 }}
+      >
+        <FileText size={20} />
+      </div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <p className={`text-sm font-semibold ${theme.text}`}>{label}</p>
+        <p className={`text-xs mt-0.5 ${theme.subtext}`}>PDF · Yeni sekmede açılır</p>
+      </div>
+      <Download size={16} className={`${theme.subtext} group-hover:opacity-100`} style={{ flexShrink: 0 }} />
     </a>
   )
 }

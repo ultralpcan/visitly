@@ -6,7 +6,7 @@ import { Block, SOCIAL_PLATFORMS } from '@/types'
 import { createClient } from '@/lib/supabase/client'
 import {
   Plus, Trash2, Eye, EyeOff, ChevronUp, ChevronDown,
-  Link as LinkIcon, Share2, CreditCard, Type, Minus, GripVertical,
+  Link as LinkIcon, Share2, CreditCard, Type, Minus, GripVertical, FileText,
 } from 'lucide-react'
 
 interface Props { initialBlocks: Block[]; profileId: string }
@@ -14,6 +14,7 @@ interface Props { initialBlocks: Block[]; profileId: string }
 const BLOCK_TYPES = [
   { type: 'social_links', label: 'Sosyal Medya', icon: Share2, desc: '18 platform — Instagram, LinkedIn...' },
   { type: 'link', label: 'Link Butonu', icon: LinkIcon, desc: 'Tek bir bağlantı' },
+  { type: 'cv', label: 'CV / Özgeçmiş', icon: FileText, desc: 'PDF CV bağlantısı' },
   { type: 'iban', label: 'IBAN', icon: CreditCard, desc: 'Banka bilgileri' },
   { type: 'heading', label: 'Başlık', icon: Type, desc: 'Bölüm başlığı' },
   { type: 'text', label: 'Metin', icon: Type, desc: 'Açıklama paragrafı' },
@@ -27,6 +28,7 @@ function getDefaultData(type: string): Record<string, unknown> {
     case 'heading': return { text: 'Başlık', align: 'center' }
     case 'text': return { text: 'Açıklama metni...', align: 'center' }
     case 'link': return { title: 'Link Başlığı', url: 'https://', description: '' }
+    case 'cv': return { cv_url: 'https://', cv_label: "CV'mi İndir" }
     default: return {}
   }
 }
@@ -238,6 +240,7 @@ function BlockEditor({ block, onUpdate }: { block: Block; onUpdate: (data: Recor
     case 'heading':
     case 'text': return <TextEditor block={block} onUpdate={onUpdate} />
     case 'link': return <LinkEditor block={block} onUpdate={onUpdate} />
+    case 'cv': return <CvEditor block={block} onUpdate={onUpdate} />
     default: return null
   }
 }
@@ -412,6 +415,36 @@ function LinkEditor({ block, onUpdate }: { block: Block; onUpdate: (d: Record<st
           />
         </div>
       ))}
+    </div>
+  )
+}
+
+function CvEditor({ block, onUpdate }: { block: Block; onUpdate: (d: Record<string, unknown>) => void }) {
+  const [data, setData] = useState(block.data)
+  const update = (field: string, value: string) => { const u = { ...data, [field]: value }; setData(u); onUpdate(u) }
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div>
+        <label style={{ display: 'block', fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 5 }}>CV Bağlantısı (PDF URL)</label>
+        <input
+          defaultValue={data.cv_url ?? ''}
+          onBlur={e => update('cv_url', e.target.value)}
+          placeholder="https://drive.google.com/.../cv.pdf"
+          style={fieldStyle}
+          onFocus={e => (e.target.style.borderColor = 'rgba(139,92,246,0.5)')}
+        />
+        <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 5 }}>Google Drive, Dropbox veya kendi sunucundaki PDF bağlantısı.</p>
+      </div>
+      <div>
+        <label style={{ display: 'block', fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 5 }}>Buton Yazısı</label>
+        <input
+          defaultValue={data.cv_label ?? "CV'mi İndir"}
+          onBlur={e => update('cv_label', e.target.value)}
+          placeholder="CV'mi İndir"
+          style={fieldStyle}
+          onFocus={e => (e.target.style.borderColor = 'rgba(139,92,246,0.5)')}
+        />
+      </div>
     </div>
   )
 }

@@ -6,6 +6,7 @@ export type BlockType =
   | 'link'
   | 'divider'
   | 'contact_form'
+  | 'cv'
 
 export interface SocialLink {
   platform: string
@@ -44,6 +45,9 @@ export interface Block {
     // contact_form
     email_to?: string
     button_label?: string
+    // cv
+    cv_url?: string
+    cv_label?: string
   }
 }
 
@@ -89,10 +93,10 @@ export const THEMES: Theme[] = [
     bg: 'bg-white',
     text: 'text-gray-900',
     subtext: 'text-gray-500',
-    card: 'bg-gray-50 border border-gray-200',
-    border: 'border-gray-200',
-    button: 'bg-gray-900',
-    buttonText: 'text-white',
+    card: 'bg-black/5 border border-black/10 backdrop-blur-sm',
+    border: 'border-black/10',
+    button: 'bg-black/10 backdrop-blur-sm border border-black/5',
+    buttonText: 'text-gray-900',
   },
   {
     id: 'dark',
@@ -100,10 +104,10 @@ export const THEMES: Theme[] = [
     bg: 'bg-gray-950',
     text: 'text-white',
     subtext: 'text-gray-400',
-    card: 'bg-gray-900 border border-gray-800',
-    border: 'border-gray-800',
-    button: 'bg-white',
-    buttonText: 'text-gray-900',
+    card: 'bg-white/5 border border-white/10 backdrop-blur-sm',
+    border: 'border-white/10',
+    button: 'bg-white/10 backdrop-blur-sm border border-white/10',
+    buttonText: 'text-white',
   },
   {
     id: 'purple',
@@ -111,9 +115,9 @@ export const THEMES: Theme[] = [
     bg: 'bg-purple-950',
     text: 'text-white',
     subtext: 'text-purple-300',
-    card: 'bg-purple-900/50 border border-purple-800',
-    border: 'border-purple-800',
-    button: 'bg-purple-500',
+    card: 'bg-white/5 border border-purple-400/20 backdrop-blur-sm',
+    border: 'border-purple-400/20',
+    button: 'bg-purple-400/15 backdrop-blur-sm border border-purple-300/20',
     buttonText: 'text-white',
   },
   {
@@ -122,9 +126,9 @@ export const THEMES: Theme[] = [
     bg: 'bg-blue-950',
     text: 'text-white',
     subtext: 'text-blue-300',
-    card: 'bg-blue-900/50 border border-blue-800',
-    border: 'border-blue-800',
-    button: 'bg-blue-500',
+    card: 'bg-white/5 border border-blue-400/20 backdrop-blur-sm',
+    border: 'border-blue-400/20',
+    button: 'bg-blue-400/15 backdrop-blur-sm border border-blue-300/20',
     buttonText: 'text-white',
   },
   {
@@ -133,9 +137,9 @@ export const THEMES: Theme[] = [
     bg: 'bg-emerald-950',
     text: 'text-white',
     subtext: 'text-emerald-300',
-    card: 'bg-emerald-900/50 border border-emerald-800',
-    border: 'border-emerald-800',
-    button: 'bg-emerald-500',
+    card: 'bg-white/5 border border-emerald-400/20 backdrop-blur-sm',
+    border: 'border-emerald-400/20',
+    button: 'bg-emerald-400/15 backdrop-blur-sm border border-emerald-300/20',
     buttonText: 'text-white',
   },
   {
@@ -144,9 +148,9 @@ export const THEMES: Theme[] = [
     bg: 'bg-rose-950',
     text: 'text-white',
     subtext: 'text-rose-300',
-    card: 'bg-rose-900/50 border border-rose-800',
-    border: 'border-rose-800',
-    button: 'bg-rose-500',
+    card: 'bg-white/5 border border-rose-400/20 backdrop-blur-sm',
+    border: 'border-rose-400/20',
+    button: 'bg-rose-400/15 backdrop-blur-sm border border-rose-300/20',
     buttonText: 'text-white',
   },
   {
@@ -154,22 +158,22 @@ export const THEMES: Theme[] = [
     name: 'Gradyan Mor',
     bg: 'bg-gradient-to-br from-purple-900 via-violet-900 to-indigo-900',
     text: 'text-white',
-    subtext: 'text-purple-300',
-    card: 'bg-white/10 border border-white/20 backdrop-blur-sm',
+    subtext: 'text-purple-200',
+    card: 'bg-white/10 border border-white/20 backdrop-blur-md',
     border: 'border-white/20',
-    button: 'bg-white',
-    buttonText: 'text-purple-900',
+    button: 'bg-white/15 backdrop-blur-md border border-white/20',
+    buttonText: 'text-white',
   },
   {
     id: 'gradient-sunset',
     name: 'Gradyan Gün Batımı',
     bg: 'bg-gradient-to-br from-orange-900 via-rose-900 to-pink-900',
     text: 'text-white',
-    subtext: 'text-orange-300',
-    card: 'bg-white/10 border border-white/20 backdrop-blur-sm',
+    subtext: 'text-orange-200',
+    card: 'bg-white/10 border border-white/20 backdrop-blur-md',
     border: 'border-white/20',
-    button: 'bg-white',
-    buttonText: 'text-rose-900',
+    button: 'bg-white/15 backdrop-blur-md border border-white/20',
+    buttonText: 'text-white',
   },
 ]
 
