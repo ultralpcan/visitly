@@ -1,12 +1,19 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useTransition } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { Profile, THEMES } from '@/types'
 import { createClient } from '@/lib/supabase/client'
-import { Camera, Check, Loader2 } from 'lucide-react'
+import { Camera, Check, Loader2, Trash2, Star } from 'lucide-react'
 
-export function ProfileEditor({ profile }: { profile: Profile }) {
+interface Props {
+  profile: Profile
+  canDelete: boolean
+}
+
+export function ProfileEditor({ profile, canDelete }: Props) {
+  const router = useRouter()
   const [displayName, setDisplayName] = useState(profile.display_name)
   const [bio, setBio] = useState(profile.bio ?? '')
   const [theme, setTheme] = useState(profile.theme)
@@ -16,32 +23,60 @@ export function ProfileEditor({ profile }: { profile: Profile }) {
   const [saved, setSaved] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState('')
+  const [, startTransition] = useTransition()
   const fileRef = useRef<HTMLInputElement>(null)
 
   async function handleSave() {
     setSaving(true); setError('')
     const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return
-    const { error } = await supabase.from('profiles').update({ display_name: displayName, bio, theme, button_style: buttonStyle, updated_at: new Date().toISOString() }).eq('id', user.id)
+    const { error } = await supabase.from('profiles').update({
+      display_name: displayName, bio, theme, button_style: buttonStyle,
+      updated_at: new Date().toISOString(),
+    }).eq('id', profile.id)
     setSaving(false)
-    if (error) { setError(error.message) } else { setSaved(true); setTimeout(() => setSaved(false), 2000) }
+    if (error) { setError(error.message) }
+    else { setSaved(true); setTimeout(() => setSaved(false), 2000); router.refresh() }
   }
 
   async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]; if (!file) return
-    setUploading(true)
+    setUploading(true); setError('')
     const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser(); if (!user) return
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) { setUploading(false); return }
     const ext = file.name.split('.').pop()
-    const path = `${user.id}/avatar.${ext}`
+    const path = `${user.id}/${profile.id}/avatar.${ext}`
     const { error: uploadError } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
     if (!uploadError) {
       const { data: { publicUrl } } = supabase.storage.from('avatars').getPublicUrl(path)
-      await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', user.id)
+      await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', profile.id)
       setAvatarUrl(publicUrl + '?t=' + Date.now())
+      router.refresh()
+    } else {
+      setError(uploadError.message)
     }
     setUploading(false)
+  }
+
+  async function handleMakeDefault() {
+    if (profile.is_default) return
+    setError('')
+    const supabase = createClient()
+    await supabase.from('profiles').update({ is_default: false }).eq('owner_id', profile.owner_id).eq('is_default', true)
+    const { error } = await supabase.from('profiles').update({ is_default: true }).eq('id', profile.id)
+    if (error) { setError(error.message); return }
+    startTransition(() => router.refresh())
+  }
+
+  async function handleDelete() {
+    if (!canDelete) return
+    if (!confirm(`"${profile.display_name}" profili ve ilgili tüm blokları/analitikleri kalıcı olarak silinecek. Emin misin?`)) return
+    setError('')
+    const supabase = createClient()
+    const { error } = await supabase.from('profiles').delete().eq('id', profile.id)
+    if (error) { setError(error.message); return }
+    router.push('/dashboard')
+    router.refresh()
   }
 
   const cardStyle = { backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '24px', marginBottom: 16 }
@@ -146,6 +181,39 @@ export function ProfileEditor({ profile }: { profile: Profile }) {
           : saved ? <><Check size={15} />Kaydedildi!</>
           : 'Değişiklikleri Kaydet'}
       </button>
+
+      {/* Danger / meta zone */}
+      <div style={{ ...cardStyle, marginTop: 24 }}>
+        <label style={labelStyle}>Profil Yönetimi</label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+            <div>
+              <p style={{ fontSize: 13, color: '#fff', margin: 0, fontWeight: 500 }}>Varsayılan profil</p>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', margin: '2px 0 0' }}>Dashboard'a girdiğinde ilk yüklenen profil.</p>
+            </div>
+            <button onClick={handleMakeDefault} disabled={profile.is_default}
+              style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', borderRadius: 8, fontSize: 12, fontWeight: 600, border: '1px solid rgba(255,255,255,0.1)', backgroundColor: profile.is_default ? 'rgba(167,139,250,0.1)' : 'rgba(255,255,255,0.05)', color: profile.is_default ? '#a78bfa' : 'rgba(255,255,255,0.8)', cursor: profile.is_default ? 'default' : 'pointer' }}>
+              <Star size={12} fill={profile.is_default ? '#a78bfa' : 'none'} />
+              {profile.is_default ? 'Varsayılan' : 'Varsayılan Yap'}
+            </button>
+          </div>
+
+          {canDelete && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+              <div>
+                <p style={{ fontSize: 13, color: '#fca5a5', margin: 0, fontWeight: 500 }}>Profili Sil</p>
+                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', margin: '2px 0 0' }}>Bu profil ve tüm verileri (bloklar, analitik) kalıcı olarak silinir.</p>
+              </div>
+              <button onClick={handleDelete}
+                style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', borderRadius: 8, fontSize: 12, fontWeight: 600, border: '1px solid rgba(239,68,68,0.3)', backgroundColor: 'rgba(239,68,68,0.1)', color: '#fca5a5', cursor: 'pointer' }}>
+                <Trash2 size={12} />
+                Sil
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
       <style>{`@keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }`}</style>
     </div>
   )

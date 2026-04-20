@@ -49,6 +49,7 @@ export interface Block {
 
 export interface Profile {
   id: string
+  owner_id: string
   username: string
   display_name: string
   bio: string | null
@@ -56,8 +57,17 @@ export interface Profile {
   theme: string
   button_style: string
   is_active: boolean
+  is_default: boolean
   created_at: string
   updated_at: string
+}
+
+export interface ProfileSummary {
+  id: string
+  username: string
+  display_name: string
+  avatar_url: string | null
+  is_default: boolean
 }
 
 export type Theme = {

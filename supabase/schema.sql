@@ -1,9 +1,11 @@
--- Visitly Veritabanı Şeması
--- Supabase SQL Editor'de bu dosyayı çalıştır
+-- Visitly Veritabanı Şeması (YENİ — multi profile)
+-- Temiz kurulum için Supabase SQL Editor'de bu dosyayı çalıştır.
+-- Mevcut veritabanı varsa migration_multi_profile.sql kullan.
 
--- Profiller tablosu
+-- Profiller tablosu (her kullanıcı birden çok profil sahibi olabilir)
 CREATE TABLE public.profiles (
-  id UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  owner_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
   username TEXT UNIQUE NOT NULL,
   display_name TEXT NOT NULL,
   bio TEXT,
@@ -11,6 +13,7 @@ CREATE TABLE public.profiles (
   theme TEXT NOT NULL DEFAULT 'default',
   button_style TEXT NOT NULL DEFAULT 'rounded',
   is_active BOOLEAN NOT NULL DEFAULT true,
+  is_default BOOLEAN NOT NULL DEFAULT false,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -42,8 +45,10 @@ CREATE TABLE public.link_clicks (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- İndeksler (performans için)
+-- İndeksler
 CREATE INDEX idx_profiles_username ON public.profiles(username);
+CREATE INDEX idx_profiles_owner_id ON public.profiles(owner_id);
+CREATE UNIQUE INDEX idx_profiles_one_default_per_owner ON public.profiles(owner_id) WHERE is_default = true;
 CREATE INDEX idx_blocks_profile_id ON public.blocks(profile_id);
 CREATE INDEX idx_blocks_position ON public.blocks(profile_id, position);
 CREATE INDEX idx_page_views_profile_id ON public.page_views(profile_id);
@@ -51,7 +56,7 @@ CREATE INDEX idx_page_views_created_at ON public.page_views(profile_id, created_
 CREATE INDEX idx_link_clicks_profile_id ON public.link_clicks(profile_id);
 CREATE INDEX idx_link_clicks_block_id ON public.link_clicks(block_id);
 
--- Row Level Security (RLS) - Güvenlik kuralları
+-- Row Level Security
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.blocks ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.page_views ENABLE ROW LEVEL SECURITY;
@@ -62,38 +67,42 @@ CREATE POLICY "Herkes aktif profilleri görebilir"
   ON public.profiles FOR SELECT
   USING (is_active = true);
 
-CREATE POLICY "Kullanıcı kendi profilini görebilir"
+CREATE POLICY "Kullanıcı kendi profillerini görebilir"
   ON public.profiles FOR SELECT
-  USING (auth.uid() = id);
+  USING (auth.uid() = owner_id);
 
-CREATE POLICY "Kullanıcı kendi profilini oluşturabilir"
+CREATE POLICY "Kullanıcı kendi profillerini oluşturabilir"
   ON public.profiles FOR INSERT
-  WITH CHECK (auth.uid() = id);
+  WITH CHECK (auth.uid() = owner_id);
 
-CREATE POLICY "Kullanıcı kendi profilini güncelleyebilir"
+CREATE POLICY "Kullanıcı kendi profillerini güncelleyebilir"
   ON public.profiles FOR UPDATE
-  USING (auth.uid() = id);
+  USING (auth.uid() = owner_id);
 
--- Blocks politikaları
+CREATE POLICY "Kullanıcı kendi profillerini silebilir"
+  ON public.profiles FOR DELETE
+  USING (auth.uid() = owner_id);
+
+-- Blocks politikaları (profiles.owner_id üzerinden)
 CREATE POLICY "Herkes görünür blokları görebilir"
   ON public.blocks FOR SELECT
   USING (is_visible = true);
 
 CREATE POLICY "Kullanıcı kendi bloklarını görebilir"
   ON public.blocks FOR SELECT
-  USING (auth.uid() = profile_id);
+  USING (profile_id IN (SELECT id FROM public.profiles WHERE owner_id = auth.uid()));
 
 CREATE POLICY "Kullanıcı kendi bloklarını oluşturabilir"
   ON public.blocks FOR INSERT
-  WITH CHECK (auth.uid() = profile_id);
+  WITH CHECK (profile_id IN (SELECT id FROM public.profiles WHERE owner_id = auth.uid()));
 
 CREATE POLICY "Kullanıcı kendi bloklarını güncelleyebilir"
   ON public.blocks FOR UPDATE
-  USING (auth.uid() = profile_id);
+  USING (profile_id IN (SELECT id FROM public.profiles WHERE owner_id = auth.uid()));
 
 CREATE POLICY "Kullanıcı kendi bloklarını silebilir"
   ON public.blocks FOR DELETE
-  USING (auth.uid() = profile_id);
+  USING (profile_id IN (SELECT id FROM public.profiles WHERE owner_id = auth.uid()));
 
 -- Page views politikaları
 CREATE POLICY "Herkes görüntüleme kaydı oluşturabilir"
@@ -102,7 +111,7 @@ CREATE POLICY "Herkes görüntüleme kaydı oluşturabilir"
 
 CREATE POLICY "Kullanıcı kendi görüntüleme verilerini görebilir"
   ON public.page_views FOR SELECT
-  USING (auth.uid() = profile_id);
+  USING (profile_id IN (SELECT id FROM public.profiles WHERE owner_id = auth.uid()));
 
 -- Link clicks politikaları
 CREATE POLICY "Herkes tıklama kaydı oluşturabilir"
@@ -111,7 +120,7 @@ CREATE POLICY "Herkes tıklama kaydı oluşturabilir"
 
 CREATE POLICY "Kullanıcı kendi tıklama verilerini görebilir"
   ON public.link_clicks FOR SELECT
-  USING (auth.uid() = profile_id);
+  USING (profile_id IN (SELECT id FROM public.profiles WHERE owner_id = auth.uid()));
 
 -- Storage bucket (avatarlar için)
 INSERT INTO storage.buckets (id, name, public) VALUES ('avatars', 'avatars', true);

@@ -1,22 +1,25 @@
+import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { getActiveProfile } from '@/lib/active-profile'
 import { DashboardOverview } from '@/components/dashboard/DashboardOverview'
 
 export default async function DashboardPage() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return null
+  const data = await getActiveProfile()
+  if (!data) redirect('/giris')
 
-  const [profileRes, viewsRes, clicksRes, blocksRes] = await Promise.all([
-    supabase.from('profiles').select('username, display_name').eq('id', user.id).single(),
-    supabase.from('page_views').select('id', { count: 'exact', head: true }).eq('profile_id', user.id),
-    supabase.from('link_clicks').select('id', { count: 'exact', head: true }).eq('profile_id', user.id),
-    supabase.from('blocks').select('id', { count: 'exact', head: true }).eq('profile_id', user.id),
+  const supabase = await createClient()
+  const profileId = data.activeProfile.id
+
+  const [viewsRes, clicksRes, blocksRes] = await Promise.all([
+    supabase.from('page_views').select('id', { count: 'exact', head: true }).eq('profile_id', profileId),
+    supabase.from('link_clicks').select('id', { count: 'exact', head: true }).eq('profile_id', profileId),
+    supabase.from('blocks').select('id', { count: 'exact', head: true }).eq('profile_id', profileId),
   ])
 
   return (
     <DashboardOverview
-      username={profileRes.data?.username ?? ''}
-      displayName={profileRes.data?.display_name ?? ''}
+      username={data.activeProfile.username}
+      displayName={data.activeProfile.display_name}
       totalViews={viewsRes.count ?? 0}
       totalClicks={clicksRes.count ?? 0}
       totalBlocks={blocksRes.count ?? 0}

@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { validateUsername, usernameErrorMessage } from '@/lib/username'
 import { Loader2 } from 'lucide-react'
-
-const RESERVED = ['dashboard', 'giris', 'kayit', 'admin', 'api', 'profil', 'ayarlar', 'proxy']
 
 export default function KayitPage() {
   const router = useRouter()
@@ -18,23 +18,32 @@ export default function KayitPage() {
     setLoading(true)
     setError('')
     const form = e.currentTarget
-    const username = (form.username.value as string).toLowerCase().trim()
+    const rawUsername = form.username.value as string
     const email = form.email.value as string
     const password = form.password.value as string
     const displayName = form.display_name.value as string
 
-    if (RESERVED.includes(username)) { setError('Bu kullanıcı adı kullanılamaz.'); setLoading(false); return }
-    if (!/^[a-z0-9_-]{3,30}$/.test(username)) { setError('Kullanıcı adı 3-30 karakter, sadece harf/rakam/alt çizgi/tire.'); setLoading(false); return }
+    const result = validateUsername(rawUsername)
+    if (!result.valid) { setError(usernameErrorMessage(result.error)); setLoading(false); return }
+    const username = result.username
 
     const supabase = createClient()
-    const { data: existing } = await supabase.from('profiles').select('username').eq('username', username).single()
+    const { data: existing } = await supabase.from('profiles').select('username').eq('username', username).maybeSingle()
     if (existing) { setError('Bu kullanıcı adı zaten alınmış.'); setLoading(false); return }
 
     const { data: authData, error: authError } = await supabase.auth.signUp({ email, password, options: { data: { display_name: displayName, username } } })
     if (authError) { setError(authError.message); setLoading(false); return }
     if (!authData.user) { setError('Kayıt başarısız.'); setLoading(false); return }
 
-    const { error: profileError } = await supabase.from('profiles').insert({ id: authData.user.id, username, display_name: displayName, theme: 'dark', button_style: 'rounded', is_active: true })
+    const { error: profileError } = await supabase.from('profiles').insert({
+      owner_id: authData.user.id,
+      username,
+      display_name: displayName,
+      theme: 'dark',
+      button_style: 'rounded',
+      is_active: true,
+      is_default: true,
+    })
     if (profileError) { setError(profileError.message); setLoading(false); return }
 
     router.push('/dashboard')
@@ -52,8 +61,8 @@ export default function KayitPage() {
     <div style={{ minHeight: '100vh', backgroundColor: '#080808', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
       <div style={{ width: '100%', maxWidth: 420 }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <Link href="/" style={{ textDecoration: 'none', fontSize: 24, fontWeight: 800, color: '#fff', letterSpacing: '-0.5px', display: 'inline-block', marginBottom: 8 }}>
-            visitly
+          <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', marginBottom: 8 }}>
+            <Image src="/logo-full.svg" alt="Visitly" width={120} height={30} style={{ height: 30, width: 'auto' }} />
           </Link>
           <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 14 }}>Ücretsiz profil sayfanı oluştur</p>
         </div>
@@ -68,9 +77,10 @@ export default function KayitPage() {
               <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Kullanıcı Adı</label>
               <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, overflow: 'hidden' }}>
                 <span style={{ padding: '11px 0 11px 14px', fontSize: 14, color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap', flexShrink: 0 }}>visitly.tr/</span>
-                <input name="username" type="text" required placeholder="kullanici"
+                <input name="username" type="text" required minLength={4} maxLength={30} placeholder="kullanici"
                   style={{ flex: 1, backgroundColor: 'transparent', border: 'none', padding: '11px 14px 11px 0', color: '#fff', fontSize: 14, outline: 'none' }} />
               </div>
+              <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)', marginTop: 6 }}>En az 4 karakter · Sadece küçük harf, rakam, _ ve -</p>
             </div>
 
             <div>

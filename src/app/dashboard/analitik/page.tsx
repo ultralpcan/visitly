@@ -1,19 +1,23 @@
+import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { getActiveProfile } from '@/lib/active-profile'
 import { Eye, MousePointer, TrendingUp } from 'lucide-react'
 
 export default async function AnalitikPage() {
+  const data = await getActiveProfile()
+  if (!data) redirect('/giris')
+
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return null
+  const profileId = data.activeProfile.id
 
   const thirtyDaysAgo = new Date()
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
   const iso = thirtyDaysAgo.toISOString()
 
   const [viewsRes, clicksRes, recentViewsRes] = await Promise.all([
-    supabase.from('page_views').select('id', { count: 'exact' }).eq('profile_id', user.id),
-    supabase.from('link_clicks').select('id', { count: 'exact' }).eq('profile_id', user.id),
-    supabase.from('page_views').select('created_at, referrer').eq('profile_id', user.id).gte('created_at', iso).order('created_at', { ascending: false }).limit(100),
+    supabase.from('page_views').select('id', { count: 'exact' }).eq('profile_id', profileId),
+    supabase.from('link_clicks').select('id', { count: 'exact' }).eq('profile_id', profileId),
+    supabase.from('page_views').select('created_at, referrer').eq('profile_id', profileId).gte('created_at', iso).order('created_at', { ascending: false }).limit(100),
   ])
 
   const totalViews = viewsRes.count ?? 0
