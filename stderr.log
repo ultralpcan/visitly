@@ -1,0 +1,573 @@
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-51c2997e6f5e2eedee2dc5a4c464bf20.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-d665cc84dbdde4d4ed2794a98b3caa4e.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-7ab497b58e606e317667b2a0882c84e.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-7b39a5ad1089b566290f0a2dfdaaab08.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-a4890be7a21bdbf86bfe66a12e085069.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-32d2c6da270dbcf1ff95e765dc229a95.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-95ed04668bf23a79200873960ea8f728.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-9dacb82c2519dd5fcd7d45fe88a8626e.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-338e67650ee085f5118ddcde5c3bdc6f.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-8dc2dad92523ec65f90818349491413b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /tmp/next-panic-625c830eb794d45d53711c237f80fc0.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root&body=Turbopack%20version%3A%20%60e0739832%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ASymlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%0ADebug%20info%3A%0A-%20Execution%20of%20get_entrypoints_with_issues_operation%20failed%0A-%20Execution%20of%20EntrypointsOperation%3A%3Anew%20failed%0A-%20Execution%20of%20Project%3A%3Aentrypoints_with_app_route_filter%20failed%0A-%20Execution%20of%20AppProject%3A%3Aroutes_with_filter%20failed%0A-%20Execution%20of%20directory_tree_to_entrypoints_internal%20failed%0A-%20Execution%20of%20directory_tree_to_loader_tree%20failed%0A-%20Execution%20of%20try_get_next_package%20failed%0A-%20Execution%20of%20%2AResolveResult%3A%3Afirst_source%20failed%0A-%20Execution%20of%20resolve%20failed%0A-%20Execution%20of%20resolve_internal%20failed%0A-%20Execution%20of%20find_package%20failed%0A-%20Symlink%20%5Bproject%5D%2Fnode_modules%20is%20invalid%2C%20it%20points%20out%20of%20the%20filesystem%20root%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+Error [TurbopackInternalError]: Symlink [project]/node_modules is invalid, it points out of the filesystem root
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints_with_app_route_filter failed
+- Execution of AppProject::routes_with_filter failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of try_get_next_package failed
+- Execution of *ResolveResult::first_source failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of find_package failed
+- Symlink [project]/node_modules is invalid, it points out of the filesystem root
+    at ignore-listed frames {
+  location: undefined
+}
+node:internal/modules/cjs/loader:1386
+  throw err;
+  ^
+
+Error: Cannot find module '/'
+Require stack:
+- /usr/local/lsws/fcgi-bin/lsnode.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Module._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.require (node:internal/modules/cjs/loader:1463:12)
+    at require (node:internal/modules/helpers:147:16)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:48:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:16:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/usr/local/lsws/fcgi-bin/lsnode.js' ]
+}
+
+Node.js v22.22.0
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
+Unhandled Rejection: Error: ENOENT: no such file or directory, open '/home/visitlyt/visitly/.next/prerender-manifest.json'
+    at ignore-listed frames {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/visitlyt/visitly/.next/prerender-manifest.json'
+}
