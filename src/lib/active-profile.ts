@@ -25,7 +25,8 @@ export async function getActiveProfile(): Promise<{
   const cookieStore = await cookies()
   const activeId = cookieStore.get(COOKIE_NAME)?.value
 
-  const active = (activeId && profiles.find(p => p.id === activeId))
+  const active: ProfileSummary =
+    (activeId ? profiles.find(p => p.id === activeId) : undefined)
     ?? profiles.find(p => p.is_default)
     ?? profiles[0]
 
