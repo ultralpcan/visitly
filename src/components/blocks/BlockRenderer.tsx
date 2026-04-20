@@ -5,26 +5,35 @@ import { SocialIcon } from './SocialIcon'
 import { Copy, Check, ExternalLink } from 'lucide-react'
 import { useState } from 'react'
 
+export function buttonRadius(style: string): { icon: number; card: number } {
+  switch (style) {
+    case 'pill': return { icon: 9999, card: 24 }
+    case 'square': return { icon: 4, card: 6 }
+    default: return { icon: 12, card: 16 } // rounded
+  }
+}
+
 interface BlockRendererProps {
   block: Block
   theme: Theme
+  buttonStyle: string
   onLinkClick?: (blockId: string) => void
 }
 
-export function BlockRenderer({ block, theme, onLinkClick }: BlockRendererProps) {
+export function BlockRenderer({ block, theme, buttonStyle, onLinkClick }: BlockRendererProps) {
   if (!block.is_visible) return null
 
   switch (block.type) {
     case 'social_links':
-      return <SocialLinksBlock block={block} theme={theme} onLinkClick={onLinkClick} />
+      return <SocialLinksBlock block={block} theme={theme} buttonStyle={buttonStyle} onLinkClick={onLinkClick} />
     case 'iban':
-      return <IbanBlock block={block} theme={theme} />
+      return <IbanBlock block={block} theme={theme} buttonStyle={buttonStyle} />
     case 'heading':
       return <HeadingBlock block={block} theme={theme} />
     case 'text':
       return <TextBlock block={block} theme={theme} />
     case 'link':
-      return <LinkBlock block={block} theme={theme} onLinkClick={onLinkClick} />
+      return <LinkBlock block={block} theme={theme} buttonStyle={buttonStyle} onLinkClick={onLinkClick} />
     case 'divider':
       return <DividerBlock theme={theme} />
     default:
@@ -32,8 +41,9 @@ export function BlockRenderer({ block, theme, onLinkClick }: BlockRendererProps)
   }
 }
 
-function SocialLinksBlock({ block, theme, onLinkClick }: BlockRendererProps) {
+function SocialLinksBlock({ block, theme, buttonStyle, onLinkClick }: BlockRendererProps) {
   const links = block.data.links ?? []
+  const r = buttonRadius(buttonStyle)
   return (
     <div className="flex flex-wrap gap-3 justify-center">
       {links.map((link, i) => (
@@ -43,7 +53,8 @@ function SocialLinksBlock({ block, theme, onLinkClick }: BlockRendererProps) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => onLinkClick?.(block.id)}
-          className={`w-12 h-12 rounded-xl flex items-center justify-center ${theme.button} ${theme.buttonText} hover:opacity-80 transition-opacity`}
+          className={`w-12 h-12 flex items-center justify-center ${theme.button} ${theme.buttonText} hover:opacity-80 transition-opacity`}
+          style={{ borderRadius: r.icon }}
           title={link.label || link.platform}
         >
           <SocialIcon platform={link.platform} />
@@ -53,9 +64,10 @@ function SocialLinksBlock({ block, theme, onLinkClick }: BlockRendererProps) {
   )
 }
 
-function IbanBlock({ block, theme }: { block: Block; theme: Theme }) {
+function IbanBlock({ block, theme, buttonStyle }: { block: Block; theme: Theme; buttonStyle: string }) {
   const [copied, setCopied] = useState(false)
   const info = block.data.iban_info
+  const r = buttonRadius(buttonStyle)
   if (!info) return null
 
   function handleCopy() {
@@ -65,7 +77,7 @@ function IbanBlock({ block, theme }: { block: Block; theme: Theme }) {
   }
 
   return (
-    <div className={`rounded-2xl p-4 ${theme.card}`}>
+    <div className={`p-4 ${theme.card}`} style={{ borderRadius: r.card }}>
       <p className={`text-xs font-medium uppercase tracking-wider mb-3 ${theme.subtext}`}>IBAN</p>
       {info.bank_name && (
         <p className={`text-sm font-medium mb-1 ${theme.text}`}>{info.bank_name}</p>
@@ -75,7 +87,8 @@ function IbanBlock({ block, theme }: { block: Block; theme: Theme }) {
         <p className={`text-sm font-mono break-all ${theme.subtext}`}>{info.iban}</p>
         <button
           onClick={handleCopy}
-          className={`shrink-0 p-2 rounded-lg ${theme.button} ${theme.buttonText} hover:opacity-80 transition-opacity`}
+          className={`shrink-0 p-2 ${theme.button} ${theme.buttonText} hover:opacity-80 transition-opacity`}
+          style={{ borderRadius: r.icon }}
         >
           {copied ? <Check size={14} /> : <Copy size={14} />}
         </button>
@@ -114,14 +127,16 @@ function TextBlock({ block, theme }: { block: Block; theme: Theme }) {
   )
 }
 
-function LinkBlock({ block, theme, onLinkClick }: BlockRendererProps) {
+function LinkBlock({ block, theme, buttonStyle, onLinkClick }: BlockRendererProps) {
+  const r = buttonRadius(buttonStyle)
   return (
     <a
       href={block.data.url}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => onLinkClick?.(block.id)}
-      className={`flex items-center justify-between p-4 rounded-2xl ${theme.card} hover:opacity-80 transition-opacity group`}
+      className={`flex items-center justify-between p-4 ${theme.card} hover:opacity-80 transition-opacity group`}
+      style={{ borderRadius: r.card }}
     >
       <div>
         <p className={`text-sm font-medium ${theme.text}`}>{block.data.title}</p>

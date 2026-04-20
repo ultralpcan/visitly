@@ -66,6 +66,7 @@ export function ProfileView({ profile, blocks, theme }: Props) {
               key={block.id}
               block={block}
               theme={theme}
+              buttonStyle={profile.button_style}
               onLinkClick={handleLinkClick}
             />
           ))}
