@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
-import { LayoutDashboard, User, Blocks, BarChart3, ExternalLink, LogOut, Menu, X, ChevronDown, Plus, Check } from 'lucide-react'
+import { LayoutDashboard, User, Blocks, BarChart3, ExternalLink, LogOut, Menu, X, ChevronDown, Plus, Check, Gem } from 'lucide-react'
 import { useState, useTransition } from 'react'
 import type { ProfileSummary } from '@/types'
 import { switchActiveProfile } from '@/app/dashboard/actions'
@@ -14,12 +14,19 @@ interface Props {
   profiles: ProfileSummary[]
 }
 
-const navItems = [
-  { href: '/dashboard', label: 'Genel Bakış', icon: LayoutDashboard },
-  { href: '/dashboard/profil', label: 'Profil', icon: User },
-  { href: '/dashboard/bloklar', label: 'Bloklar', icon: Blocks },
-  { href: '/dashboard/analitik', label: 'Analitik', icon: BarChart3 },
-]
+function getNavItems(profileType: string) {
+  const base = [
+    { href: '/dashboard', label: 'Genel Bakış', icon: LayoutDashboard },
+    { href: '/dashboard/profil', label: 'Profil', icon: User },
+  ]
+  if (profileType === 'showcase') {
+    base.push({ href: '/dashboard/urunler', label: 'Ürünler', icon: Gem })
+  } else {
+    base.push({ href: '/dashboard/bloklar', label: 'Bloklar', icon: Blocks })
+  }
+  base.push({ href: '/dashboard/analitik', label: 'Analitik', icon: BarChart3 })
+  return base
+}
 
 export function DashboardSidebar({ activeProfile, profiles }: Props) {
   const pathname = usePathname()
@@ -27,6 +34,7 @@ export function DashboardSidebar({ activeProfile, profiles }: Props) {
   const [open, setOpen] = useState(false)
   const [switcherOpen, setSwitcherOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
+  const navItems = getNavItems(activeProfile.profile_type)
 
   async function handleLogout() {
     const supabase = createClient()

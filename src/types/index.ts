@@ -51,6 +51,20 @@ export interface Block {
   }
 }
 
+export type ProfileType = 'personal' | 'showcase'
+
+export interface CompanyInfo {
+  // Showcase profili için kartı düzenleyen firma bilgileri
+  issuer_name?: string         // örn. "ATASAY"
+  issuer_about?: string        // firma hakkında kısa metin
+  issuer_phone?: string
+  issuer_email?: string
+  issuer_address?: string
+  issuer_website?: string
+  issuer_logo_url?: string
+  issued_at?: string           // ISO tarih, kartın düzenlenme tarihi
+}
+
 export interface Profile {
   id: string
   owner_id: string
@@ -62,6 +76,8 @@ export interface Profile {
   button_style: string
   is_active: boolean
   is_default: boolean
+  profile_type: ProfileType
+  company_info: CompanyInfo
   created_at: string
   updated_at: string
 }
@@ -72,6 +88,21 @@ export interface ProfileSummary {
   display_name: string
   avatar_url: string | null
   is_default: boolean
+  profile_type: ProfileType
+}
+
+export interface ShowcaseItem {
+  id: string
+  profile_id: string
+  position: number
+  is_visible: boolean
+  title: string
+  description: string | null
+  primary_image_url: string | null
+  gallery: string[]                       // ek görseller
+  specs: Record<string, string>           // esnek alanlar: { karat: "14K", "ağırlık": "5.2 gr", ... }
+  acquired_at: string | null              // YYYY-MM-DD
+  created_at: string
 }
 
 export type Theme = {

@@ -7,6 +7,10 @@ export default async function BloklarPage() {
   const data = await getActiveProfile()
   if (!data) redirect('/giris')
 
+  if (data.activeProfile.profile_type === 'showcase') {
+    redirect('/dashboard/urunler')
+  }
+
   const supabase = await createClient()
   const { data: blocks } = await supabase.from('blocks').select('*').eq('profile_id', data.activeProfile.id).order('position', { ascending: true })
 

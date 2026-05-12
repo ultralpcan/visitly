@@ -15,7 +15,7 @@ export async function getActiveProfile(): Promise<{
 
   const { data: profiles } = await supabase
     .from('profiles')
-    .select('id, username, display_name, avatar_url, is_default')
+    .select('id, username, display_name, avatar_url, is_default, profile_type')
     .eq('owner_id', user.id)
     .order('is_default', { ascending: false })
     .order('created_at', { ascending: true })

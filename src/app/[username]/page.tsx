@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { THEMES } from '@/types'
 import { ProfileView } from '@/components/blocks/ProfileView'
+import { ShowcaseView } from '@/components/blocks/ShowcaseView'
 
 interface Props {
   params: Promise<{ username: string }>
@@ -39,14 +40,25 @@ export default async function ProfilePage({ params }: Props) {
 
   if (!profile) notFound()
 
+  const theme = THEMES.find((t) => t.id === profile.theme) ?? THEMES[0]
+
+  if (profile.profile_type === 'showcase') {
+    const { data: items } = await supabase
+      .from('showcase_items')
+      .select('*')
+      .eq('profile_id', profile.id)
+      .eq('is_visible', true)
+      .order('position', { ascending: true })
+
+    return <ShowcaseView profile={profile} items={items ?? []} theme={theme} />
+  }
+
   const { data: blocks } = await supabase
     .from('blocks')
     .select('*')
     .eq('profile_id', profile.id)
     .eq('is_visible', true)
     .order('position', { ascending: true })
-
-  const theme = THEMES.find((t) => t.id === profile.theme) ?? THEMES[0]
 
   return (
     <ProfileView

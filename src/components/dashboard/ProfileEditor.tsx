@@ -3,9 +3,9 @@
 import { useState, useRef, useTransition } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Profile, THEMES } from '@/types'
+import { Profile, THEMES, CompanyInfo } from '@/types'
 import { createClient } from '@/lib/supabase/client'
-import { Camera, Check, Loader2, Trash2, Star } from 'lucide-react'
+import { Camera, Check, Loader2, Trash2, Star, Building2 } from 'lucide-react'
 
 interface Props {
   profile: Profile
@@ -19,6 +19,8 @@ export function ProfileEditor({ profile, canDelete }: Props) {
   const [theme, setTheme] = useState(profile.theme)
   const [buttonStyle, setButtonStyle] = useState(profile.button_style)
   const [avatarUrl, setAvatarUrl] = useState(profile.avatar_url)
+  const [companyInfo, setCompanyInfo] = useState<CompanyInfo>(profile.company_info ?? {})
+  const isShowcase = profile.profile_type === 'showcase'
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [uploading, setUploading] = useState(false)
@@ -29,13 +31,19 @@ export function ProfileEditor({ profile, canDelete }: Props) {
   async function handleSave() {
     setSaving(true); setError('')
     const supabase = createClient()
-    const { error } = await supabase.from('profiles').update({
+    const payload: Record<string, unknown> = {
       display_name: displayName, bio, theme, button_style: buttonStyle,
       updated_at: new Date().toISOString(),
-    }).eq('id', profile.id)
+    }
+    if (isShowcase) payload.company_info = companyInfo
+    const { error } = await supabase.from('profiles').update(payload).eq('id', profile.id)
     setSaving(false)
     if (error) { setError(error.message) }
     else { setSaved(true); setTimeout(() => setSaved(false), 2000); router.refresh() }
+  }
+
+  function updateCompanyInfo(field: keyof CompanyInfo, value: string) {
+    setCompanyInfo(prev => ({ ...prev, [field]: value }))
   }
 
   async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -155,6 +163,51 @@ export function ProfileEditor({ profile, canDelete }: Props) {
           ))}
         </div>
       </div>
+
+      {/* Issuer / Düzenleyen Firma (sadece showcase) */}
+      {isShowcase && (
+        <div style={cardStyle}>
+          <label style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Building2 size={11} /> Düzenleyen Firma
+          </label>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', margin: '0 0 14px', lineHeight: 1.5 }}>
+            Bu kartın altında görünen firma bilgileri. Müşteri sayfasında &quot;{companyInfo.issuer_name || '(firma adı)'} tarafından düzenlenmiştir&quot; ibaresi geçer.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {[
+              { field: 'issuer_name' as const, label: 'Firma Adı', placeholder: 'örn. Akyıldırım Kuyumculuk' },
+              { field: 'issuer_about' as const, label: 'Firma Hakkında', placeholder: 'Kısa kurumsal tanıtım metni...', textarea: true },
+              { field: 'issuer_phone' as const, label: 'Telefon', placeholder: '+90 5XX XXX XX XX' },
+              { field: 'issuer_email' as const, label: 'E-posta', placeholder: 'iletisim@firma.com' },
+              { field: 'issuer_address' as const, label: 'Adres', placeholder: 'İlçe / Şehir' },
+              { field: 'issuer_website' as const, label: 'Web Sitesi', placeholder: 'https://firma.com' },
+              { field: 'issued_at' as const, label: 'Düzenleme Tarihi', placeholder: '', date: true },
+            ].map(f => (
+              <div key={f.field}>
+                <label style={{ display: 'block', fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 5 }}>{f.label}</label>
+                {f.textarea ? (
+                  <textarea
+                    value={(companyInfo[f.field] ?? '') as string}
+                    onChange={e => updateCompanyInfo(f.field, e.target.value)}
+                    rows={2} placeholder={f.placeholder}
+                    style={{ ...inputStyle, resize: 'none', lineHeight: 1.5 }}
+                    onFocus={e => (e.target.style.borderColor = 'rgba(139,92,246,0.5)')}
+                    onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')} />
+                ) : (
+                  <input
+                    type={f.date ? 'date' : 'text'}
+                    value={(companyInfo[f.field] ?? '') as string}
+                    onChange={e => updateCompanyInfo(f.field, e.target.value)}
+                    placeholder={f.placeholder}
+                    style={{ ...inputStyle, colorScheme: f.date ? 'dark' : undefined }}
+                    onFocus={e => (e.target.style.borderColor = 'rgba(139,92,246,0.5)')}
+                    onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')} />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Button Style */}
       <div style={cardStyle}>
