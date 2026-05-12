@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Check, BarChart3, Palette, QrCode, Zap, Link as LinkIcon, CreditCard } from 'lucide-react'
+import { ArrowRight, Check, BarChart3, Palette, QrCode, Zap, Link as LinkIcon, CreditCard, FileText, Eye, MapPin, Download } from 'lucide-react'
+import { FaInstagram, FaLinkedinIn, FaBehance, FaXTwitter } from 'react-icons/fa6'
 
 export default function Home() {
   return (
@@ -70,56 +71,137 @@ export default function Home() {
           }}>
             Ücretsiz Başla <ArrowRight size={16} />
           </Link>
-          <Link href="/ultralpcan" style={{
+          <Link href="#ozellikler" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.7)',
             textDecoration: 'none', fontSize: 15, padding: '14px 28px', borderRadius: 12,
           }}>
-            Örnek Profil
+            Özellikleri Keşfet
           </Link>
         </div>
 
         {/* Mock profile card */}
-        <div style={{ marginTop: 64, display: 'flex', justifyContent: 'center' }}>
+        <div style={{ marginTop: 72, display: 'flex', justifyContent: 'center', perspective: 1000 }}>
           <div style={{
-            width: 280, borderRadius: 24,
-            border: '1px solid rgba(255,255,255,0.08)',
-            backgroundColor: 'rgba(255,255,255,0.03)',
-            backdropFilter: 'blur(20px)',
-            padding: '32px 24px', textAlign: 'center',
-            boxShadow: '0 0 80px rgba(139,92,246,0.15)',
+            position: 'relative',
+            width: 320,
+            borderRadius: 28,
+            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%)',
+            backdropFilter: 'blur(24px)',
+            padding: '28px 22px 22px',
+            textAlign: 'center',
+            boxShadow: '0 0 120px rgba(139,92,246,0.2), 0 0 60px rgba(96,165,250,0.1)',
           }}>
+            {/* Views badge */}
             <div style={{
-              width: 72, height: 72, borderRadius: '50%', margin: '0 auto 16px',
-              background: 'linear-gradient(135deg, #7c3aed, #2563eb)',
+              position: 'absolute', top: 16, right: 16,
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.5)',
+              backgroundColor: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.2)',
+              padding: '4px 9px', borderRadius: 999,
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', backgroundColor: '#34d399', boxShadow: '0 0 8px #34d399' }} />
+              1,284 görüntülenme
+            </div>
+
+            {/* Avatar */}
+            <div style={{
+              width: 80, height: 80, borderRadius: '50%', margin: '8px auto 14px',
+              background: 'linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 28, fontWeight: 700, color: '#fff',
-            }}>A</div>
-            <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 6 }}>Alpcan M.</div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 24 }}>Full Stack Developer</div>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginBottom: 16 }}>
-              {['in', 'gh', 'tw', 'ig'].map(s => (
-                <div key={s} style={{
-                  width: 40, height: 40, borderRadius: 10,
-                  backgroundColor: 'rgba(255,255,255,0.08)',
+              fontSize: 30, fontWeight: 700, color: '#fff',
+              boxShadow: '0 8px 32px rgba(139,92,246,0.4)',
+            }}>E</div>
+
+            <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 4 }}>Elif Kaya</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 10 }}>Ürün Tasarımcısı · Freelance</div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11, color: 'rgba(255,255,255,0.35)', marginBottom: 20 }}>
+              <MapPin size={11} /> İstanbul, Türkiye
+            </div>
+
+            {/* Social icons */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 9, marginBottom: 14 }}>
+              {[
+                { Icon: FaInstagram, color: '#E1306C' },
+                { Icon: FaLinkedinIn, color: '#0A66C2' },
+                { Icon: FaBehance, color: '#1769FF' },
+                { Icon: FaXTwitter, color: '#fff' },
+              ].map(({ Icon, color }, i) => (
+                <div key={i} style={{
+                  width: 42, height: 42, borderRadius: 12,
+                  backgroundColor: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  backdropFilter: 'blur(10px)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.5)',
-                }}>{s}</div>
+                  color, fontSize: 16,
+                }}><Icon /></div>
               ))}
             </div>
+
+            {/* CV link card */}
             <div style={{
-              backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: 12, padding: '12px 16px', textAlign: 'left',
+              display: 'flex', alignItems: 'center', gap: 10,
+              backgroundColor: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: 14, padding: '11px 12px', marginBottom: 9,
             }}>
-              <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>IBAN</div>
-              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontFamily: 'monospace' }}>TR12 3456 7890 1234</div>
+              <div style={{
+                width: 36, height: 36, borderRadius: 10,
+                backgroundColor: 'rgba(96,165,250,0.15)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#60a5fa', flexShrink: 0,
+              }}><FileText size={16} /></div>
+              <div style={{ flex: 1, textAlign: 'left', minWidth: 0 }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>CV&apos;mi İndir</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)' }}>PDF · 2 sayfa</div>
+              </div>
+              <Download size={14} color="rgba(255,255,255,0.4)" />
+            </div>
+
+            {/* Portfolio link card */}
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              backgroundColor: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: 14, padding: '11px 12px', marginBottom: 9,
+            }}>
+              <div style={{
+                width: 36, height: 36, borderRadius: 10,
+                backgroundColor: 'rgba(167,139,250,0.15)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#a78bfa', flexShrink: 0,
+              }}><Palette size={16} /></div>
+              <div style={{ flex: 1, textAlign: 'left', minWidth: 0 }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>Portfolyom</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)' }}>elifkaya.design</div>
+              </div>
+              <ArrowRight size={14} color="rgba(255,255,255,0.4)" />
+            </div>
+
+            {/* IBAN card */}
+            <div style={{
+              backgroundColor: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: 14, padding: '12px 14px', textAlign: 'left',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5 }}>
+                <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 600 }}>IBAN · Ziraat</span>
+                <span style={{ fontSize: 9, color: '#34d399', fontWeight: 600 }}>Tıkla, kopyala</span>
+              </div>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)', fontFamily: 'ui-monospace, SFMono-Regular, monospace', letterSpacing: 0.5 }}>
+                TR47 0001 0023 4567 8901 2345 67
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '80px 24px' }}>
+      <section id="ozellikler" style={{ backgroundColor: 'rgba(255,255,255,0.02)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '80px 24px', scrollMarginTop: 80 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <h2 style={{ textAlign: 'center', fontSize: 36, fontWeight: 700, letterSpacing: '-1px', marginBottom: 12, color: '#fff' }}>
             İhtiyacın olan her şey
@@ -129,12 +211,14 @@ export default function Home() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
             {[
-              { icon: <LinkIcon size={20} />, title: 'Sınırsız Link', desc: '18+ platformu tek sayfada topla. Instagram, LinkedIn, GitHub...' },
-              { icon: <Palette size={20} />, title: '8 Tema', desc: 'Koyu, açık, gradyan. Profilin seni tam olarak yansıtsın.' },
-              { icon: <BarChart3 size={20} />, title: 'Gerçek Zamanlı Analitik', desc: 'Kim bakıyor, nereden geliyor, hangi linke tıklıyor.' },
-              { icon: <QrCode size={20} />, title: 'QR Kod', desc: 'Otomatik QR kod üret. Kartvizite bas, ekrana göster.' },
+              { icon: <LinkIcon size={20} />, title: 'Sınırsız Link', desc: '18+ platformu tek sayfada topla. Instagram, LinkedIn, GitHub, TikTok ve dahası.' },
+              { icon: <FileText size={20} />, title: 'CV Bağlantısı', desc: 'PDF özgeçmişini Google Drive&apos;dan bağla, ziyaretçiler tek tıkla indirsin.' },
               { icon: <CreditCard size={20} />, title: 'IBAN Bloğu', desc: 'Banka bilgilerini tek tıkla kopyalanabilir şekilde paylaş.' },
-              { icon: <Zap size={20} />, title: 'Anlık Yayın', desc: 'Düzenle ve kaydet. Değişiklikler anında canlıya alınır.' },
+              { icon: <Palette size={20} />, title: '8 Tema · Cam Efekti', desc: 'Glassmorphism butonlar, gradyanlar. Profilin seni yansıtsın.' },
+              { icon: <BarChart3 size={20} />, title: 'Gerçek Zamanlı Analitik', desc: 'Kim bakıyor, nereden geliyor, hangi linke tıklıyor — hepsi panelde.' },
+              { icon: <QrCode size={20} />, title: 'QR Kod', desc: 'Otomatik QR kod üret. Kartvizite bas, masaya koy, ekrana göster.' },
+              { icon: <Eye size={20} />, title: 'Çoklu Profil', desc: 'İş ve kişisel profil ayrı ayrı. Tek hesaptan birden fazla profil yönet.' },
+              { icon: <Zap size={20} />, title: 'Anlık Yayın', desc: 'Düzenle ve kaydet. Değişiklikler saniyeler içinde canlıya alınır.' },
             ].map((f, i) => (
               <div key={i} style={{
                 padding: '28px 24px', borderRadius: 16,
@@ -171,11 +255,13 @@ export default function Home() {
             <div style={{ textAlign: 'left', marginBottom: 32 }}>
               {[
                 'Özel kullanıcı adı (visitly.tr/siz)',
+                'Tek hesapta birden fazla profil',
                 'Sınırsız link ekleme',
+                'CV / Özgeçmiş bağlantısı',
                 'IBAN bloğu',
-                '8 farklı tema',
+                '8 farklı tema · Cam efektli butonlar',
                 'QR kod oluşturma',
-                'Analitik dashboard',
+                'Gerçek zamanlı analitik',
                 'Profil fotoğrafı yükleme',
               ].map(item => (
                 <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.75)', fontSize: 14 }}>
